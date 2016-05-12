@@ -58,7 +58,7 @@ def iniciar_sesion(request):
 			user_e = None
 
 		user = authenticate(username=user_e, password=password)		
-		
+
 		if not user_e:			
 			return HttpResponse("<h1>no existe usuario<a href='/'>Volver</a></h1>")
 		elif user is not None:
@@ -80,28 +80,21 @@ def registrar_usuario(request):
 		apellido = request.POST.get('apellido',None)
 		email = request.POST.get('email',None)
 		password = request.POST.get('password',None)		 
-		
-
+	
 		existe_usuario = User.objects.filter(email=email)
 		if not existe_usuario:			
 			usuario = User(first_name=nombre, last_name=apellido, email=email)			
 			usuario.username = nombre+" "+apellido
 			usuario.set_password(password)
 			usuario.is_superuser = False
-			usuario.save()
-			if action == 'reg_profesor':
-				profesor = Profesor(user_id=usuario.id)
-				profesor.save()
-				return HttpResponse("<h1>Se registro Profesor con exito <a href='/'>Volver</a></h1>")
-			elif action == 'reg_alumno':
-				alumno = Alumno(user_id=usuario.id)
-				alumno.save()
-				return HttpResponse("<h1>Se registro Alumno con exito <a href='/'>Volver</a></h1>")
-			else:
-				return HttpResponse("<h1>Solo se registro usuario <a href='/'>Volver</a></h1>")
+			usuario.save()			
+			alumno = Alumno(user_id=usuario.id)
+			alumno.save()
+			
+			return HttpResponse("<h1>Se registro Alumno con exito <a href='/'>Volver</a></h1>")			
 		else:
 			return HttpResponse("<h1>El usuario ya existe</h1>")		
-
-	return render(request,"plataforma/home.html",{})	
+	return HttpResponseRedirect('/')
+	#return render(request,"plataforma/home.html",{})	
 
 
