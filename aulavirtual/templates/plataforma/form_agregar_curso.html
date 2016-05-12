@@ -1,0 +1,9 @@
+{% extends 'plataforma/base.html' %}
+{% load staticfiles %}
+{% block content%}
+	<form method="POST" action="{% url 'agregar_curso' %}" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Agregar</button>
+	</form>
+{% endblock %}
