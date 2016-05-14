@@ -4,7 +4,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 
-
 from .forms import CursoForm
 from .models import Curso,Profesor,Alumno
 
@@ -95,6 +94,4 @@ def registrar_usuario(request):
 		else:
 			return HttpResponse("<h1>El usuario ya existe</h1>")		
 	return HttpResponseRedirect('/')
-	#return render(request,"plataforma/home.html",{})	
-
-
+	#return render(request,"plataforma/home.html",{})

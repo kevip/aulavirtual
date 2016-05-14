@@ -22,4 +22,8 @@ from plataforma import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('plataforma.urls')),
+	#social auth urls
+	url('', include('social.apps.django_app.urls', namespace='social')),    
+    #Logout fb
+    #url(r'^users/logout/$','django.contrib.auth.views.logout',{'next_page': '/'},name="user-logout"),    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

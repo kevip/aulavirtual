@@ -12,7 +12,7 @@ class Profesor(models.Model):
 		verbose_name_plural="Profesores"
 
 	def __str__(self):
-		return self.user.first_name
+		return self.user
 
 class Curso(models.Model):
 
