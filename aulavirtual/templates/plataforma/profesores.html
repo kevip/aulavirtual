@@ -1,0 +1,24 @@
+{% extends 'plataforma/base.html' %}
+{% load staticfiles %}
+{% block content%}
+<div class="container courses-container">			
+    <div class="row">
+		{% for profesor in profesores %}
+		<div class="col s12 m4">
+			<div class="card">
+				<div class="card-image">						
+					<img class="img-curso"src="">
+				</div>
+				<div class="card-content">
+					<span class="card-title">{{ profesor.nombre }}</span>
+					
+				</div>
+				<div class="card-action">
+					
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>		
+{% endblock %}

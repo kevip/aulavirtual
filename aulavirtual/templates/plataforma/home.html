@@ -1,7 +1,11 @@
 {% extends 'plataforma/base.html' %}
 {% load staticfiles %}
 {% block content %}
-
+	<!--<form action="{% url 'guardar_progreso' %}" method="post">
+		{% csrf_token %}
+		<input type="text" name="termino_video" value="termino">
+		<button type="submit" class="botone">presionar</button>
+	</form>-->
 	{% if user.is_authenticated %}	
 	<div class="row">		
 		<div class="col s12 m12 l12 ">
@@ -14,7 +18,7 @@
 			</div>
 		</div>
 	</div>
-    {% else %}    
+    {% else %}        
     <div class="container">
     	<div class="card card-form">
 			<div class="row ">
@@ -60,28 +64,27 @@
 			    		</div>
 			    	</div>
 					<div class="row">
-						<div class="input-field col s12 m6 offset-m3">
-						  <input id="nombre" type="text" class="validate" name="nombre" required>
-						  <label for="nombre">Nombre</label>
+						<div class="input-field col s12 m6 offset-m3">						  
+						  {{ form.first_name }}
+						  {{ form.first_name.label_tag }}						  
 						</div>					
 					</div>
 					<div class="row">
-						<div class="input-field col s12 m6 offset-m3">
-						  <input id="apellido" type="text" class="validate" name="apellido" required>
-						  <label for="apellido">Apellido</label>
+						<div class="input-field col s12 m6 offset-m3">						  
+						  {{ form.last_name }}
+						  {{ form.last_name.label_tag }}						  
 						</div>					
 					</div>
 					<div class="row">
-						<div class="input-field col s12 m6 offset-m3">
-						  <input id="remail" type="email" class="validate" name="email" required>
-						  <label for="remail">E-mail</label>
+						<div class="input-field col s12 m6 offset-m3">						  
+						  {{ form.email }}
+						  {{ form.email.label_tag }}						  
 						</div>					
 					</div>				
 					<div class="row">
-						<div class="input-field col s12 m6 offset-m3">
-						  <input
-						   id="rpassword" type="password" class="validate" name="password"required>
-						  <label for="password">Password</label>
+						<div class="input-field col s12 m6 offset-m3">						  
+						   {{ form.password }}
+						   {{ form.password.label_tag }}						  
 						</div>
 					</div>				
 					<div class="row">
@@ -94,6 +97,6 @@
 			    </form>						
 			</div>		
 		</div>
-	</div>	
+	</div>			
     {% endif%}
 {% endblock %}

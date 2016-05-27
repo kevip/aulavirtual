@@ -16,7 +16,7 @@ class ProfesorAdmin(admin.ModelAdmin):
 class CursoAdmin(admin.ModelAdmin):
 
     list_display = ('id','nombre', 'codigo', 'profesor', 'logo',)
-    list_filter = ('profesor',)
+    #list_filter = ('profesor',)
     search_fields = ('nombre',)
 
 @admin.register(Alumno)
