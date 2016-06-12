@@ -19,7 +19,7 @@ def home(request):
 			'form' : form,
 			})
 
-def cursos(request):	
+def view_cursos(request):
 	cursos = Curso.objects.all()	
 	template = loader.get_template("plataforma/cursos.html")
 	context = {
@@ -103,10 +103,6 @@ def registrar_usuario(request):
 			return HttpResponse("<h1>El usuario ya existe</h1>")		
 	return HttpResponseRedirect('/')
 	#return render(request,"plataforma/home.html",{})
-def usuarios(request):
-	usuarios = User.objects.all()
-	usuarios = serializers.serialize('json',usuarios)
-	return HttpResponse(usuarios,content_type="application/json")
 
 def prueba_post(request):	
 	if request.method =="POST":
@@ -160,4 +156,38 @@ def matricula_alumno_curso(request, id_curso):
 		"form": form,
 		"curso":curso,
 		"cursos":cursos,
-		})	
+		})
+
+#API
+
+
+def courses(request):
+	courses = Curso.objects.all()
+	courses = serializers.serialize('json',courses)
+	return HttpResponse(courses,content_type="application/json")	
+
+def usuarios(request):
+	usuarios = User.objects.all()
+	usuarios = serializers.serialize('json',usuarios)
+	return HttpResponse(usuarios,content_type="application/json")
+
+def profesors(request):
+	profesors=User.objects.all()
+	profesors = serializers.serialize('json',profesors)
+	return HttpResponse(profesors,content_type="application/json")
+
+def course(id_course):	
+	course=get_object_or_404(Curso,id=id_curso)
+	course=serializers.serialize('json')
+	return HttpResponse(course,content_type="application_/json")
+
+def user(id_user):	
+	#course=get_object_or_404(Curso,id=id_user)
+	course = User.objects.filter(id=id_user)
+	course=serializers.serialize('json')
+	return HttpResponse(course,content_type="application_/json")
+
+def profesor(id_profesor):	
+	course=get_object_or_404(Curso,id=id_profesor)
+	course=serializers.serialize('json')
+	return HttpResponse(course,content_type="application_/json")
